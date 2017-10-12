@@ -27,7 +27,8 @@ def redirector():
     return redirect("/blog")
 
 @app.route("/blog", methods=["POST", "GET"])
-def index():     
+def index():
+    #the form should direct to /add-post instead, it would make error handling a lot cleaner         
     if request.method == "POST":
         new_title = request.form["title"]
         new_content = request.form["content"]
