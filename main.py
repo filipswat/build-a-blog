@@ -1,7 +1,7 @@
 #SETUP / BACKGROUND
 #import / configure flask and sqlalchemy elements, link up to database
 from flask import Flask, request, redirect, render_template
-from flask_sqlalchemy import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -21,7 +21,19 @@ class BlogPost(db.Model):
 
 
 #APP ROUTES / HANDLERS
+#root directory just redirects to main blog page
+@app.route("/")
+def redirector():
+    return redirect("/blog")
 
+@app.route("/blog", methods=["POST", "GET"])
+def index():
+    return render_template("blog.html")
 
+@app.route("/add-post")
+def add_post():
+    return render_template("add-post.html")
+
+#only run when supposed to
 if __name__ == "__main__":
     app.run()
