@@ -6,7 +6,8 @@
 <p><a href="/blog">Main Page</a> <a href="/add-post">New Post</a></p>
 
 {% if view_post != "" %}
-<h1>oh my god it worked, title is: {{view_post.title}}</h1>
+<h1>{{view_post.title}}</h1>
+<p>{{view_post.content}}</p>
 {% endif %}
 
 {% if view_post == "" %}

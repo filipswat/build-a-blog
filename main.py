@@ -34,6 +34,7 @@ def index():
         new_post = BlogPost(new_title, new_content)
         db.session.add(new_post)
         db.session.commit()
+        return redirect("/blog?post_id="+str(new_post.id))
     
     view_post_id = request.args.get("post_id")
     if view_post_id:
