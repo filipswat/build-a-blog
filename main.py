@@ -28,9 +28,16 @@ def redirector():
 
 @app.route("/blog", methods=["POST", "GET"])
 def index():
+    if request.method == "POST":
+        new_title = request.form["title"]
+        new_content = request.form["content"]
+        new_post = BlogPost(new_title, new_content)
+        db.session.add(new_post)
+        db.session.commit()
+
     return render_template("blog.html")
 
-@app.route("/add-post")
+@app.route("/add-post", methods=["GET"])
 def add_post():
     return render_template("add-post.html")
 
